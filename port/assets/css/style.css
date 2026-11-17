@@ -1,0 +1,1612 @@
+/* =========================================================
+   Portfolio — Kanisorn Hormklin
+   ธีม: ขาว สะอาด อ่านง่าย / accent ส้มอิฐ
+   โครงสร้างไฟล์:
+   01. ตัวแปรสี & ค่าพื้นฐาน
+   02. ปุ่ม / องค์ประกอบที่ใช้ซ้ำ
+   03. Header & เมนู
+   04. Hero
+   05. แถบเลื่อนเครื่องมือ (Marquee)
+   06. Section ทั่วไป
+   07. About
+   08. Services
+   09. ผลงาน (Works)
+   10. Contact
+   11. Footer
+   12. Lightbox
+   13. Animation & Responsive
+   ========================================================= */
+
+/* ---------- 01. ตัวแปรสี & ค่าพื้นฐาน ---------- */
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f6f6f3;
+  --ink: #141414;
+  --ink-soft: #3d3d3d;
+  --muted: #6b6b66;
+  --line: #e7e7e1;
+  --accent: #ff4d2d;
+  --accent-ink: #c93a18;
+  --accent-soft: #fff0ec;
+  --radius: 20px;
+  --radius-lg: 28px;
+  --shadow-sm: 0 2px 10px rgba(20, 20, 20, 0.05);
+  --shadow-md: 0 18px 45px rgba(20, 20, 20, 0.08);
+  --font-thai: "IBM Plex Sans Thai", "Noto Sans Thai", system-ui, sans-serif;
+  --font-latin: "Space Grotesk", var(--font-thai);
+  --container: 1140px;
+  --header-h: 76px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-thai);
+  font-size: 16px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.nav-open,
+body.lightbox-open {
+  overflow: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, p, ul {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.container {
+  width: min(100% - 48px, var(--container));
+  margin-inline: auto;
+}
+
+/* ---------- แถบความคืบหน้าการเลื่อนหน้า ---------- */
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 3px;
+  z-index: 90;
+  pointer-events: none;
+}
+
+.scroll-progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #ffa14d);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+
+/* ---------- 02. ปุ่ม / องค์ประกอบที่ใช้ซ้ำ ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-family: var(--font-latin);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn svg {
+  transition: transform 0.2s ease;
+}
+
+.btn:hover svg {
+  transform: translateX(3px);
+}
+
+.btn-dark {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+  color: #fff;
+}
+
+/* แสงวิ่งผ่านปุ่มตอน hover */
+.btn-dark::after {
+  content: "";
+  position: absolute;
+  inset: -30% -60%;
+  background: linear-gradient(
+    100deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.28) 50%,
+    transparent 70%
+  );
+  transform: translateX(-120%) skewX(-14deg);
+  transition: transform 0.65s ease;
+  pointer-events: none;
+}
+
+.btn-dark:hover::after {
+  transform: translateX(120%) skewX(-14deg);
+}
+
+.btn-dark:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(20, 20, 20, 0.2);
+}
+
+.btn-outline {
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.btn-outline:hover {
+  border-color: var(--ink);
+  transform: translateY(-2px);
+}
+
+.btn-small {
+  padding: 10px 20px;
+  font-size: 0.875rem;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 15px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  font-weight: 500;
+  box-shadow: var(--shadow-sm);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #16a34a;
+  box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.13);
+  flex: none;
+}
+
+.text-accent {
+  color: var(--accent);
+}
+
+.muted {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* ---------- 03. Header & เมนู ---------- */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 60;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.site-header.is-scrolled {
+  border-bottom-color: var(--line);
+  box-shadow: 0 6px 24px rgba(20, 20, 20, 0.04);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-latin);
+  font-weight: 700;
+  font-size: 1.02rem;
+  letter-spacing: -0.01em;
+}
+
+.logo-mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.98rem;
+}
+
+.logo .dot {
+  color: var(--accent);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.nav-link {
+  position: relative;
+  padding: 8px 14px;
+  border-radius: 999px;
+  color: var(--ink-soft);
+  font-size: 0.93rem;
+  font-weight: 500;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--ink);
+  background: var(--bg-soft);
+}
+
+.nav-link.is-active {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.nav-link.is-active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 1px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translateX(-50%);
+}
+
+/* เส้นใต้เมนูที่ค่อย ๆ วิ่งตอน hover */
+.nav-link::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 5px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover::before,
+.nav-link:focus-visible::before {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+.header-cta {
+  flex: none;
+}
+
+.menu-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 11px 10px;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #fff;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---------- 04. Hero ---------- */
+.hero {
+  position: relative;
+  padding-top: calc(var(--header-h) + 46px);
+  padding-bottom: clamp(60px, 8vw, 100px);
+  background:
+    radial-gradient(900px 500px at 85% 5%, rgba(255, 77, 45, 0.06), transparent 65%),
+    radial-gradient(700px 400px at 8% 30%, rgba(20, 20, 20, 0.035), transparent 60%);
+  overflow: hidden;
+}
+
+/* วงแสงนุ่ม ๆ ลอยช้า ๆ ด้านหลัง Hero */
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero::before {
+  top: -150px;
+  right: -70px;
+  width: 460px;
+  height: 460px;
+  background: radial-gradient(circle, rgba(255, 77, 45, 0.09), transparent 65%);
+  animation: drift 17s ease-in-out infinite alternate;
+}
+
+.hero::after {
+  bottom: -130px;
+  left: -150px;
+  width: 440px;
+  height: 440px;
+  background: radial-gradient(circle, rgba(255, 161, 77, 0.1), transparent 65%);
+  animation: drift 23s ease-in-out infinite alternate-reverse;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes drift {
+  to {
+    transform: translate3d(40px, 32px, 0) scale(1.08);
+  }
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  align-items: center;
+  gap: clamp(32px, 5vw, 72px);
+}
+
+/* Hero เข้ามาแบบไล่ลำดับ */
+.js .hero-copy > [data-reveal]:nth-child(1) {
+  --reveal-delay: 0.05s;
+}
+
+.js .hero-copy > [data-reveal]:nth-child(2) {
+  --reveal-delay: 0.1s;
+}
+
+.js .hero-copy > [data-reveal]:nth-child(3) {
+  --reveal-delay: 0.16s;
+}
+
+.js .hero-copy > [data-reveal]:nth-child(4) {
+  --reveal-delay: 0.22s;
+}
+
+.js .hero-copy > [data-reveal]:nth-child(5) {
+  --reveal-delay: 0.28s;
+}
+
+.js .hero-visual[data-reveal] {
+  --reveal-delay: 0.14s;
+}
+
+.js .hero-visual[data-reveal].is-visible {
+  animation-name: reveal-visual;
+  animation-duration: 0.9s;
+}
+
+@keyframes reveal-visual {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero-copy {
+  max-width: 620px;
+}
+
+.hero-title {
+  margin: 22px 0 24px;
+  font-size: clamp(2.5rem, 5.4vw, 4.35rem);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+}
+
+.hero-lead {
+  max-width: 520px;
+  color: var(--ink-soft);
+  font-size: clamp(1rem, 1.3vw, 1.075rem);
+  line-height: 1.8;
+}
+
+.hero-lead strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.hero-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(24px, 4vw, 46px);
+  margin-top: 44px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.hero-facts li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hero-facts strong {
+  font-family: var(--font-latin);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.hero-facts span {
+  color: var(--muted);
+  font-size: 0.83rem;
+}
+
+.hero-visual {
+  position: relative;
+  justify-self: center;
+  width: min(100%, 430px);
+}
+
+.portrait-frame {
+  position: relative;
+  z-index: 0;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-lg);
+  background: var(--bg-soft);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.portrait-frame::before {
+  content: "";
+  position: absolute;
+  inset: 14px -14px -14px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  z-index: -1;
+}
+
+.portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+  border-radius: var(--radius-lg);
+}
+
+.float-tag {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  font-family: var(--font-latin);
+  font-size: 0.76rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.float-tag--top {
+  top: 18px;
+  left: -22px;
+}
+
+.float-tag--bottom {
+  right: -18px;
+  bottom: 22px;
+}
+
+/* ---------- 05. แถบเลื่อนเครื่องมือ ---------- */
+.marquee {
+  border-block: 1px solid var(--line);
+  padding: 16px 0;
+  overflow: hidden;
+  background: #fff;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 34s linear infinite;
+}
+
+.marquee-track span {
+  padding-inline: 22px;
+  font-family: var(--font-latin);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.marquee-track .sep {
+  color: var(--accent);
+  padding-inline: 0;
+  letter-spacing: 0;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* ---------- 06. Section ทั่วไป ---------- */
+.section {
+  padding: clamp(72px, 9vw, 120px) 0;
+  scroll-margin-top: calc(var(--header-h) + 10px);
+}
+
+.section-soft {
+  background: var(--bg-soft);
+}
+
+.section-head {
+  max-width: 720px;
+  margin-bottom: clamp(36px, 5vw, 56px);
+}
+
+.section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  color: var(--muted);
+  font-family: var(--font-latin);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.section-eyebrow span {
+  color: var(--accent-ink);
+}
+
+.section-title {
+  font-size: clamp(1.9rem, 3.6vw, 2.85rem);
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.015em;
+}
+
+.section-desc {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* ---------- 07. About ---------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 0.65fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+}
+
+.about-copy p {
+  max-width: 680px;
+  color: var(--ink-soft);
+  line-height: 1.9;
+}
+
+.about-copy p + p {
+  margin-top: 18px;
+}
+
+.about-copy strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.info-card {
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 13px 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: 0.9rem;
+}
+
+.info-row:first-child {
+  padding-top: 0;
+}
+
+.info-label {
+  color: var(--muted);
+  flex: none;
+}
+
+.info-value {
+  font-weight: 600;
+  text-align: right;
+}
+
+.info-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  color: var(--accent-ink);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.info-link:hover {
+  gap: 12px;
+}
+
+.info-link svg {
+  transition: transform 0.2s ease;
+}
+
+/* ---------- 08. Services ---------- */
+.cards-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.service-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 30px 26px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.service-card::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 26px;
+  width: 46px;
+  height: 3px;
+  border-radius: 0 0 3px 3px;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: #dcdcd5;
+}
+
+.service-card:hover::after {
+  opacity: 1;
+}
+
+/* แสงเรือง ๆ ตามเมาส์ */
+.service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    240px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 77, 45, 0.08),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+.service-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.service-num {
+  margin-bottom: 8px;
+  color: var(--accent-ink);
+  font-family: var(--font-latin);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.service-card h3 {
+  font-family: var(--font-latin);
+  font-size: 1.18rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.service-card p {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.8;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.tag-list li {
+  padding: 4px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg-soft);
+  color: var(--ink-soft);
+  font-family: var(--font-latin);
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+/* ---------- 09. ผลงาน (Works) ---------- */
+.work-group + .work-group {
+  margin-top: clamp(48px, 6vw, 72px);
+}
+
+.work-group-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.work-group-head h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.work-group-head .count {
+  color: var(--muted);
+  font-family: var(--font-latin);
+  font-size: 0.8rem;
+}
+
+.grid-wide {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.grid-short {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* การ์ดค่อย ๆ โผล่ทีละใบ */
+.js .cards-3 .service-card:nth-child(2) {
+  --reveal-delay: 0.08s;
+}
+
+.js .cards-3 .service-card:nth-child(3) {
+  --reveal-delay: 0.16s;
+}
+
+.js .grid-wide .work-card:nth-child(2),
+.js .grid-short .work-card:nth-child(2) {
+  --reveal-delay: 0.06s;
+}
+
+.js .grid-wide .work-card:nth-child(3),
+.js .grid-short .work-card:nth-child(3) {
+  --reveal-delay: 0.12s;
+}
+
+.js .grid-short .work-card:nth-child(4) {
+  --reveal-delay: 0.18s;
+}
+
+.work-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.work-thumb {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, #ecece7, #f7f7f4);
+  aspect-ratio: 16 / 9;
+  box-shadow: var(--shadow-sm);
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+}
+
+.work-thumb.is-tilting {
+  transition: box-shadow 0.3s ease;
+}
+
+.work-thumb:hover {
+  box-shadow: 0 18px 34px rgba(20, 20, 20, 0.14);
+}
+
+.work-card--short .work-thumb {
+  aspect-ratio: 9 / 16;
+  border-radius: 18px;
+}
+
+.work-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: transform 0.45s ease, opacity 0.4s ease;
+}
+
+.work-img.is-loaded {
+  opacity: 1;
+}
+
+.work-thumb:hover .work-img {
+  transform: scale(1.045);
+}
+
+.work-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to top, rgba(10, 10, 10, 0.45), rgba(10, 10, 10, 0.05) 55%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.work-thumb:hover .work-overlay,
+.work-thumb:focus-visible .work-overlay {
+  opacity: 1;
+}
+
+.play-btn {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--ink);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.work-thumb:hover .play-btn {
+  transform: scale(1);
+}
+
+.work-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--ink);
+  font-family: var(--font-latin);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.work-info {
+  transition: transform 0.3s ease;
+}
+
+.work-card:hover .work-info {
+  transform: translateY(-2px);
+}
+
+.work-info h4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-family: var(--font-latin);
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+.work-meta {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+/* ---------- 10. Contact ---------- */
+.contact-panel {
+  position: relative;
+  padding: clamp(32px, 5vw, 60px);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.contact-panel::before {
+  content: "";
+  position: absolute;
+  top: -140px;
+  right: -120px;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 77, 45, 0.1), transparent 70%);
+  pointer-events: none;
+}
+
+.contact-head {
+  max-width: 640px;
+  margin-bottom: clamp(30px, 4vw, 44px);
+}
+
+.contact-title {
+  font-size: clamp(2rem, 4vw, 3.05rem);
+  font-weight: 700;
+  line-height: 1.24;
+  letter-spacing: -0.02em;
+}
+
+.contact-lead {
+  margin-top: 14px;
+  color: var(--muted);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(28px, 4vw, 56px);
+  align-items: start;
+}
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.contact-item:hover {
+  border-color: #d5d5cc;
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.contact-main {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 1;
+  min-width: 0;
+}
+
+.contact-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border-radius: 12px;
+  background: var(--bg-soft);
+  color: var(--ink);
+}
+
+.contact-icon--line {
+  background: #e8f8ee;
+  color: #06c755;
+  font-family: var(--font-latin);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.contact-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.contact-label {
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+
+.contact-value {
+  font-family: var(--font-latin);
+  font-size: 0.94rem;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.copy-btn {
+  flex: none;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg-soft);
+  color: var(--ink-soft);
+  font-size: 0.74rem;
+  font-weight: 500;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.copy-btn:hover {
+  background: var(--ink);
+  color: #fff;
+}
+
+.copy-btn.is-copied {
+  background: #15803d;
+  border-color: #15803d;
+  color: #fff;
+}
+
+.contact-social {
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+}
+
+.social-title {
+  margin-bottom: 14px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.social-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  font-family: var(--font-latin);
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.social-btn:hover {
+  border-color: var(--ink);
+  transform: translateX(3px);
+}
+
+.social-btn svg {
+  color: var(--ink);
+}
+
+/* ---------- 11. Footer ---------- */
+.site-footer {
+  padding: 26px 0;
+  border-top: 1px solid var(--line);
+  background-color: #fff;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.logo--footer .logo-mark {
+  width: 30px;
+  height: 30px;
+  font-size: 0.86rem;
+}
+
+.footer-text {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.back-top {
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.back-top:hover {
+  color: var(--accent-ink);
+}
+
+/* ปุ่มกลับขึ้นด้านบน แบบลอยมุมขวา */
+.to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 55;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--ink);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s,
+    background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.to-top:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+
+/* ---------- 12. Lightbox ---------- */
+.lightbox {
+  width: min(1000px, 92vw);
+  max-width: none;
+  max-height: 92vh;
+  padding: 0;
+  border: 0;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+  overflow: auto;
+}
+
+.lightbox::backdrop {
+  background: rgba(12, 12, 12, 0.78);
+  backdrop-filter: blur(4px);
+}
+
+.lightbox[open] {
+  animation: pop 0.25s ease;
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(8px);
+  }
+}
+
+.lightbox-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.lightbox-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lightbox-close {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--bg-soft);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.lightbox-close:hover {
+  background: var(--ink);
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+.lightbox-video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.lightbox-video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ---------- 13. Animation & Responsive ---------- */
+/* ใช้ animation แทน transition เพื่อไม่ให้ทับ hover ของการ์ด */
+.js [data-reveal] {
+  opacity: 0;
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  animation: reveal-up 0.7s cubic-bezier(0.22, 1, 0.36, 1)
+    var(--reveal-delay, 0s) backwards;
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 52px;
+  }
+
+  .hero-copy {
+    max-width: 680px;
+  }
+
+  .hero-visual {
+    width: min(100%, 400px);
+  }
+
+  .portrait-frame::before {
+    inset: 12px -12px -12px 12px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .info-card {
+    max-width: 460px;
+  }
+
+  .grid-short {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-social {
+    max-width: 420px;
+  }
+}
+
+@media (max-width: 860px) {
+  .header-cta {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+    margin-left: auto;
+  }
+
+  .nav {
+    position: fixed;
+    top: var(--header-h);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    margin: 0;
+    padding: 14px 24px 22px;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 20px 40px rgba(20, 20, 20, 0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  }
+
+  body.nav-open .nav {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .nav-link {
+    padding: 14px 12px;
+    border-radius: 10px;
+    font-size: 1rem;
+  }
+
+  .nav-link::before {
+    display: none;
+  }
+
+  .nav-link.is-active::after {
+    left: 4px;
+    bottom: 50%;
+    transform: translateY(50%);
+  }
+
+  .cards-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-wide {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .container {
+    width: min(100% - 36px, var(--container));
+  }
+
+  .hero {
+    padding-top: calc(var(--header-h) + 28px);
+  }
+
+  .float-tag--top {
+    left: 10px;
+  }
+
+  .float-tag--bottom {
+    right: 8px;
+  }
+
+  .hero-facts {
+    gap: 22px;
+  }
+
+  .grid-wide,
+  .grid-short {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .work-card--short .work-thumb {
+    border-radius: 14px;
+  }
+
+  .work-badge {
+    top: 9px;
+    left: 9px;
+    font-size: 0.62rem;
+    padding: 4px 9px;
+  }
+
+  .play-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .work-info h4 {
+    font-size: 0.92rem;
+  }
+
+  .work-meta {
+    font-size: 0.76rem;
+  }
+
+  .contact-item {
+    padding: 12px 14px;
+  }
+
+  .contact-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .contact-value {
+    font-size: 0.87rem;
+  }
+
+  /* จอเล็กมาก: ซ่อนปุ่มคัดลอกเพื่อให้อีเมลแสดงบรรทัดเดียว */
+  .copy-btn {
+    display: none;
+  }
+
+  .lightbox {
+    width: 94vw;
+  }
+
+  .to-top {
+    right: 16px;
+    bottom: 16px;
+    width: 42px;
+    height: 42px;
+  }
+
+  .footer-inner {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .js [data-reveal],
+  .js [data-reveal].is-visible,
+  .js .hero-visual[data-reveal].is-visible {
+    opacity: 1;
+    animation: none;
+  }
+
+  .hero::before,
+  .hero::after {
+    animation: none;
+  }
+
+  .marquee-track {
+    animation: none;
+  }
+}

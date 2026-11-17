@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="พอร์ตโฟลิโอของคณิศร หอมกลิ่น (เจมส์) — Video Editor ประสบการณ์ 1 ปี ด้าน Short-form, คอนเทนต์ออนไลน์ และวิดีโอโปรโมตสินค้า ใช้ Photoshop, Premiere Pro และ After Effects">
+  <title>คณิศร หอมกลิ่น — Video Editor Portfolio</title>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23141414'/><text x='50' y='70' font-size='52' font-family='Arial' font-weight='700' fill='white' text-anchor='middle'>J</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+
+  <!-- แถบความคืบหน้าการเลื่อนหน้า -->
+  <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress-bar"></span></div>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="#home" class="logo">
+        <span class="logo-mark" aria-hidden="true">J</span>
+        <span class="logo-text">kanisorn<span class="dot">.</span></span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="เมนูหลัก">
+        <a href="#about" class="nav-link">เกี่ยวกับ</a>
+        <a href="#services" class="nav-link">บริการ</a>
+        <a href="#work" class="nav-link">ผลงาน</a>
+        <a href="#contact" class="nav-link">ติดต่อ</a>
+      </nav>
+
+      <a href="#contact" class="btn btn-dark btn-small header-cta">จ้างงาน</a>
+
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== Hero ===== -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="badge" data-reveal>
+            <span class="status-dot" aria-hidden="true"></span>
+            ว่างรับงาน · Video Editor
+          </p>
+
+          <h1 class="hero-title" data-reveal>
+            ตัดต่อวิดีโอ<br>
+            ให้เรื่องราว<br>
+            <span class="text-accent">น่าจดจำ</span>
+          </h1>
+
+          <p class="hero-lead" data-reveal>
+            สวัสดีครับ ผม <strong>คณิศร หอมกลิ่น (เจมส์)</strong> —
+            Video Editor ประสบการณ์ 1 ปี ด้าน Short-form (TikTok/Reels),
+            คอนเทนต์ออนไลน์ และวิดีโอโปรโมตสินค้า
+          </p>
+
+          <div class="hero-actions" data-reveal>
+            <a href="#work" class="btn btn-dark">
+              ดูผลงาน
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="#contact" class="btn btn-outline">ติดต่อผม</a>
+          </div>
+
+          <ul class="hero-facts" data-reveal>
+            <li>
+              <strong data-count="1" data-suffix="+">1+</strong>
+              <span>ปีประสบการณ์</span>
+            </li>
+            <li>
+              <strong data-count="7">7</strong>
+              <span>ผลงานคัดสรร</span>
+            </li>
+            <li>
+              <strong data-count="3">3</strong>
+              <span>โปรแกรมหลัก</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="hero-visual" data-reveal>
+          <div class="portrait-frame">
+            <img
+              src="assets/img/personal-portfolio.jpg"
+              alt="รูปโปรไฟล์ของคณิศร หอมกลิ่น (เจมส์)"
+              class="portrait"
+              width="960"
+              height="1280">
+            <span class="float-tag float-tag--top">
+              <span class="status-dot" aria-hidden="true"></span> Open for work
+            </span>
+            <span class="float-tag float-tag--bottom">Photoshop · Premiere Pro · After Effects</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Tools marquee ===== -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Premiere Pro</span><span class="sep">✦</span>
+        <span>After Effects</span><span class="sep">✦</span>
+        <span>Photoshop</span><span class="sep">✦</span>
+        <span>Short-form</span><span class="sep">✦</span>
+        <span>Long-form</span><span class="sep">✦</span>
+        <span>Product Video</span><span class="sep">✦</span>
+        <span>Storytelling</span><span class="sep">✦</span>
+        <span>Premiere Pro</span><span class="sep">✦</span>
+        <span>After Effects</span><span class="sep">✦</span>
+        <span>Photoshop</span><span class="sep">✦</span>
+        <span>Short-form</span><span class="sep">✦</span>
+        <span>Long-form</span><span class="sep">✦</span>
+        <span>Product Video</span><span class="sep">✦</span>
+        <span>Storytelling</span><span class="sep">✦</span>
+      </div>
+    </div>
+
+    <!-- ===== About ===== -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-eyebrow"><span>01</span> เกี่ยวกับผม</p>
+          <h2 class="section-title" data-reveal>เล่าเรื่องด้วยภาพ<br>และจังหวะที่ใช่</h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-copy" data-reveal>
+            <p>
+              ผมเชื่อว่าคลิปที่ดีไม่ได้อยู่ที่เอฟเฟกต์เยอะ แต่อยู่ที่การเล่าเรื่องที่ชัด
+              จังหวะที่พอดี และรายละเอียดเล็ก ๆ ที่ทำให้คนดูอยู่จนจบ
+            </p>
+            <p>
+              ตลอด 1 ปีที่ผ่านมา ผมได้ทำงานตัดต่อหลากหลายรูปแบบ ตั้งแต่คลิปสั้นสำหรับ
+              TikTok และ Reels ไปจนถึงคอนเทนต์ออนไลน์และวิดีโอโปรโมตสินค้า
+              ใช้ <strong>Photoshop</strong>, <strong>Premiere Pro</strong> และ
+              <strong>After Effects</strong> เป็นหลัก
+              เข้าใจขั้นตอนการทำงานร่วมกับทีมครีเอทีฟ และรับผิดชอบงานให้ตรงตามกำหนดเวลา
+            </p>
+            <p>
+              ผมพร้อมเปิดรับคำแนะนำ และอยากพัฒนาทักษะการตัดต่อให้เก่งขึ้นในทุกโปรเจกต์ครับ
+            </p>
+          </div>
+
+          <aside class="info-card" data-reveal aria-label="ข้อมูลส่วนตัวโดยย่อ">
+            <div class="info-row">
+              <span class="info-label">ชื่อ</span>
+              <span class="info-value">คณิศร หอมกลิ่น</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">ชื่อเล่น</span>
+              <span class="info-value">เจมส์</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">ตำแหน่ง</span>
+              <span class="info-value">Video Editor</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">ประสบการณ์</span>
+              <span class="info-value">1 ปี</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">เครื่องมือ</span>
+              <span class="info-value">Photoshop · Premiere Pro · After Effects</span>
+            </div>
+            <a href="#contact" class="info-link">
+              พูดคุยเรื่องงาน
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Services ===== -->
+    <section class="section section-soft" id="services">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-eyebrow"><span>02</span> สิ่งที่ผมทำ</p>
+          <h2 class="section-title" data-reveal>งานตัดต่อที่ครอบคลุม<br>ทุกฟอร์แมตคอนเทนต์</h2>
+        </div>
+
+        <div class="cards-3">
+          <article class="service-card" data-reveal>
+            <span class="service-num">01</span>
+            <h3>Short-form Content</h3>
+            <p>ตัดต่อคลิปแนวตั้งสำหรับ TikTok และ Reels จังหวะกระชับ ดึงดูดตั้งแต่วินาทีแรก</p>
+            <ul class="tag-list">
+              <li>TikTok</li>
+              <li>Reels</li>
+              <li>Hook</li>
+            </ul>
+          </article>
+
+          <article class="service-card" data-reveal>
+            <span class="service-num">02</span>
+            <h3>Online Content</h3>
+            <p>คอนเทนต์ออนไลน์ที่เล่าเรื่องชัด ภาพและเสียงคม ดูง่าย และสื่อสารตรงจุด</p>
+            <ul class="tag-list">
+              <li>YouTube</li>
+              <li>Storytelling</li>
+              <li>Pacing</li>
+            </ul>
+          </article>
+
+          <article class="service-card" data-reveal>
+            <span class="service-num">03</span>
+            <h3>Product Video</h3>
+            <p>วิดีโอโปรโมตสินค้าที่เน้นภาพลักษณ์ จุดขาย และอารมณ์ของแบรนด์</p>
+            <ul class="tag-list">
+              <li>Promo</li>
+              <li>Brand</li>
+              <li>Motion</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Work: long-form ===== -->
+    <section class="section" id="work">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-eyebrow"><span>03</span> ผลงานคัดสรร</p>
+          <h2 class="section-title" data-reveal>ตัวอย่างผลงาน<br>ที่ผมตั้งใจทำ</h2>
+          <p class="section-desc" data-reveal>คลิกที่การ์ดเพื่อเล่นวิดีโอได้เลยครับ</p>
+        </div>
+
+        <div class="work-group">
+          <div class="work-group-head">
+            <h3>คลิปยาว <span class="muted">/ Long-form</span></h3>
+            <span class="count">3 ผลงาน</span>
+          </div>
+          <div class="grid-wide" id="long-form-list"><!-- สร้างจาก assets/js/works-data.js --></div>
+        </div>
+
+        <div class="work-group">
+          <div class="work-group-head">
+            <h3>คลิปสั้น <span class="muted">/ Short-form</span></h3>
+            <span class="count">4 ผลงาน</span>
+          </div>
+          <div class="grid-short" id="short-form-list"><!-- สร้างจาก assets/js/works-data.js --></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contact ===== -->
+    <section class="section section-soft" id="contact">
+      <div class="container">
+        <div class="contact-panel" data-reveal>
+          <div class="contact-head">
+            <p class="section-eyebrow"><span>04</span> ติดต่องาน</p>
+            <h2 class="contact-title">มีโปรเจกต์ในหัวอยู่แล้ว?<br><span class="text-accent">มาคุยกันครับ</span></h2>
+            <p class="contact-lead">พร้อมรับงานตัดต่อทั้งคลิปสั้นและคลิปยาว ส่งรายละเอียดงานมาได้เลย</p>
+          </div>
+
+          <div class="contact-grid">
+            <div class="contact-list">
+              <div class="contact-item">
+                <a class="contact-main" href="mailto:Jameskanisorn@gmail.com">
+                  <span class="contact-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                  <span class="contact-text">
+                    <span class="contact-label">อีเมล</span>
+                    <span class="contact-value">Jameskanisorn@gmail.com</span>
+                  </span>
+                </a>
+                <button class="copy-btn" type="button" data-copy="Jameskanisorn@gmail.com" aria-label="คัดลอกอีเมล">คัดลอก</button>
+              </div>
+
+              <a class="contact-item" href="tel:+66811839636">
+                <span class="contact-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20"><path d="M6.5 3h2l1.5 4-2 1.5a13 13 0 0 0 5.5 5.5L15 12l4 1.5v2A2.5 2.5 0 0 1 16.5 18C9.6 17.5 4.5 12.4 4 5.5A2.5 2.5 0 0 1 6.5 3Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+                </span>
+                <span class="contact-text">
+                  <span class="contact-label">โทรศัพท์</span>
+                  <span class="contact-value">081-183-9636</span>
+                </span>
+              </a>
+
+              <a class="contact-item" href="https://line.me/ti/p/~Jameskanisorn" target="_blank" rel="noopener">
+                <span class="contact-icon contact-icon--line" aria-hidden="true">LINE</span>
+                <span class="contact-text">
+                  <span class="contact-label">LINE</span>
+                  <span class="contact-value">Jameskanisorn</span>
+                </span>
+              </a>
+            </div>
+
+            <div class="contact-social">
+              <p class="social-title">ตามดูผลงานเพิ่มเติม</p>
+              <div class="social-grid">
+                <a class="social-btn" href="https://www.facebook.com/kanisorn.hormklin/" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.2H7.5V13h2.7v8h3.3z" fill="currentColor"/></svg>
+                  Facebook
+                </a>
+                <a class="social-btn" href="https://www.instagram.com/jameskanisorn/" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor"/></svg>
+                  Instagram
+                </a>
+              </div>
+
+              <a href="mailto:Jameskanisorn@gmail.com" class="btn btn-dark btn-block">
+                ส่งอีเมลหาผม
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a href="#home" class="logo logo--footer">
+        <span class="logo-mark">J</span>
+        <span class="logo-text">kanisorn<span class="dot">.</span></span>
+      </a>
+      <p class="footer-text">© <span id="year">2026</span> คณิศร หอมกลิ่น · Video Editor</p>
+      <a href="#home" class="back-top">กลับขึ้นด้านบน ↑</a>
+    </div>
+  </footer>
+
+  <!-- ปุ่มกลับขึ้นด้านบน (แสดงเมื่อเลื่อนหน้า) -->
+  <button class="to-top" id="to-top" type="button" aria-label="กลับขึ้นด้านบน">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <!-- ===== Video lightbox ===== -->
+  <dialog class="lightbox" id="lightbox" aria-label="เครื่องเล่นวิดีโอ">
+    <div class="lightbox-inner">
+      <div class="lightbox-bar">
+        <p class="lightbox-title" id="lightbox-title">ผลงาน</p>
+        <button class="lightbox-close" id="lightbox-close" type="button" aria-label="ปิดวิดีโอ">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="lightbox-video">
+        <iframe
+          id="lightbox-frame"
+          title="วิดีโอผลงาน"
+          src="about:blank"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="assets/js/works-data.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
